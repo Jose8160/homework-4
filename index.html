@@ -9,10 +9,21 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div id="Quiz">quiz</div>
-        <button type="submit"></button>
-        <div id="results"></div>
+
+        <div id="start-screen">
+            <button id="start">start</button>
+        </div>
+        <div id="quiz" class="hide"> 
+            <h3 id="question-title"></h3>
+            <div id="choices"></div>
+        </div>
+        <div id="end-screen" class="hide">
+            
+            <button type="submit"></button>
+        </div>
         
-        <script src=".js" async defer></script>
+        
+        
+        <script src="script.js" async defer></script>
     </body>
 </html>
