@@ -37,6 +37,7 @@ var timerEl = document.getElementById("time");
 var answerContainer = document.getElementById("choices");
 
 function startQuiz() {
+  timeleft = 10;
   var startScreen = document.getElementById("start-screen");
   startScreen.setAttribute("class", "hide");
   quizContainer.removeAttribute("class");
@@ -60,5 +61,42 @@ function renderQuestions() {
   });
 }
 
+//
+function checkAnswer(selectedAnswer) {
+  var correctAnswer = questions[questionIndex].correctAnswer;
+  if (selectedAnswer === correctAnswer) {
+    // Handle logic to correct answer here
+  } else {
+    // Handle logic to wrong answer here
+  }
+}
+
+//
+function handleAnswers() {
+  if (event.target.matches(".answer")) {
+    var selectedAnswer = event.target.getAttribute("value");
+    checkAnswer(selectedAnswer);
+
+    if (questionIndex < 3) {
+      questionIndex++;
+      renderQuestions();
+    }
+  }
+}
+
+var Timer = setInterval(function () {
+  if (timeleft <= 0) {
+    clearInterval(Timer);
+    document.getElementById("countdown").innerHTML = "Finished";
+  } else {
+    document.getElementById("countdown").innerHTML =
+      timeleft + " seconds remaining";
+  }
+
+  timeleft -= 1;
+}, 1000);
+
+// event listner
+answerContainer.addEventListener("click", handleAnswers);
 
 startButton.onclick = startQuiz;
